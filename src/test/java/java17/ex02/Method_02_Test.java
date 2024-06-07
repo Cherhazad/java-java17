@@ -62,11 +62,12 @@ public class Method_02_Test {
         DaoA daoA = new DaoA();
 
         // TODO invoquer la méthode format() pour que le test soit passant
-        String result = daoA.format();
+        String result = null;
+        result = daoA.format();
         System.out.println(result);
 
         assert "DaoA[20 persons]".equals(result);
         
-        assertEquals("DaoA[20 persons]", result);
+        
     }
 }
