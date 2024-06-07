@@ -2,7 +2,6 @@ package java17.ex01;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
