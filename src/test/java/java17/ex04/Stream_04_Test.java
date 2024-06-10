@@ -1,12 +1,18 @@
 package java17.ex04;
 
 
-import org.junit.Test;
+import static org.hamcrest.Matchers.arrayContaining;
+import static org.junit.Assert.assertThat;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import org.junit.Test;
+
+import java17.data.Data;
+import java17.data.domain.Customer;
+import java17.data.domain.Order;
 
 /**
  * Exercice 04 - Stream
@@ -16,17 +22,24 @@ public class Stream_04_Test {
     @Test
     public void test_of() throws Exception {
         // Construire un stream permettant de rendre le test passant
-        Stream<String> result = null;
+    	List<Customer> customers = new Data().getCustomers();
+    	
+    	Stream<String> result = customers.stream().map(psn -> psn.getFirstname()).sorted();
+    	result.forEach(System.out::println); //result.forEach(name -> System.out.println(name));
+
 
         assertThat(result.toArray(), arrayContaining("Alexandra", "Cyril", "Johnny", "Marion", "Sophie"));
+        
     }
 
     @Test
     public void test_builder() throws Exception {
+    	List<Customer> customers = new Data().getCustomers();
 
         // TODO compléter pour rendre le test passant
         // TODO utiliser la méthode "add"
-        Stream<Object> result = Stream.builder().build();
+        Stream<Object> result = Stream.builder().add(customers.stream().map(psn -> psn.getFirstname())).build();
+        // A continuer...
 
         assertThat(result.toArray(), arrayContaining("Alexandra", "Cyril", "Johnny", "Marion", "Sophie"));
     }
