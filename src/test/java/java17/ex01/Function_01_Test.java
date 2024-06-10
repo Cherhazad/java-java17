@@ -22,14 +22,17 @@ public class Function_01_Test {
     // TODO le nom sera de la forme "last_<ENTIER>"
     // TODO l'age sera de la forme "<ENTIER>"
     // TODO le mot de passe sera de la forme "pass_<ENTIER>"
-    private Function<Integer, Person> intToPerson = null;
+   
+	private Function<Integer, Person> intToPerson = t -> new Person("first_" + t, "last_" + t, t, "pass_ " + t);
+		
+	
     // end::intToPerson[]
 
     @Test
     public void test_intToPerson() throws Exception {
 
         // TODO invoquer la fonction intToPerson avec en paramètre l'entier 10.
-        Person result = null;
+        Person result = intToPerson.apply(10);
 
         assert result.getFirstname().equals("first_10");
         assert result.getLastname().equals("last_10");
@@ -43,7 +46,17 @@ public class Function_01_Test {
     // TODO Compléter la définition de cette fonction
     // TODO la propriété owner est valorisé avec la personne en paramètre
     // TODO la propriété balance est valorisé à 1000
-    private Function<Person, Account> personToAccount = null;
+    private Function<Person, Account> personToAccount = new Function<Person, Account>(){
+
+		@Override
+		public Account apply(Person p) {
+		Account ac = new Account(); //voir le contenu de la classe Account, il n'y a pas de constructeur donc on utilise les setter donc on fait plusieurs lignes donc on ne peut pas plus simplifier
+			ac.setBalance(1000);
+			ac.setOwner(p);
+			return ac;
+		} // voir le corrigé sur github richard 
+    	
+    };
     // end::personToAccount[]
 
     @Test
@@ -52,7 +65,7 @@ public class Function_01_Test {
         Person person = new Person("Jules", "France", 10, "pass");
 
         // TODO invoquer la fonction personToAccount
-        Account result = null;
+        Account result = personToAccount.apply(person);
 
         assert result.getOwner().equals(person);
         assert result.getBalance().equals(1000);
