@@ -11,6 +11,7 @@ import java17.data.domain.Pizza;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -107,7 +108,12 @@ public class Stream_03_Test {
 		// TODO Séparer la liste des pizzas en 2 ensembles :
 		// TODO true -> les pizzas dont le nom commence par "L"
 		// TODO false -> les autres
-		Map<Boolean, List<Pizza>> result = null;
+		Map<Boolean, List<Pizza>> result = pizzas.stream().collect(Collectors.partitioningBy(p->p.getName().startsWith("L")));
+		
+		for (Entry<Boolean, List<Pizza>> p : result.entrySet()) {
+			
+			System.out.println(p);
+		}
 
 		assertThat(result.get(true), hasSize(6));
 		assertThat(result.get(false), hasSize(2));
