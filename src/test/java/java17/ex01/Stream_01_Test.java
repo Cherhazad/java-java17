@@ -93,7 +93,7 @@ public class Stream_01_Test {
 
 		// TODO récupérer une commande faite par un client dont le prénom est "Sophie"
 		//Optional<Order> result = orders.stream().filter(o -> "Sophie".equals(o.getCustomer().getFirstname())).findFirst();
-		Optional<Order> result = orders.stream().filter(o->o.getCustomer().getFirstname().equals("Sophie").findFirst());
+		Optional<Order> result = orders.stream().filter(o->o.getCustomer().getFirstname().equals("Sophie")).findFirst();
 		
 		assertThat(result.isPresent(), is(false));
 	}
