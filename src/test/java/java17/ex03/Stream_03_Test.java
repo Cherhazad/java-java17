@@ -69,6 +69,7 @@ public class Stream_03_Test {
 
 		// TODO Extraire la liste des pizzas de toutes les commandes
 		List<Pizza> result = orders.stream().flatMap(o->o.getPizzas().stream()).toList();
+		System.out.println(result);
 
 		assertThat(result.size(), is(9));
 	}
@@ -79,7 +80,8 @@ public class Stream_03_Test {
 		List<Order> orders = new Data().getOrders();
 
 		// TODO Extraire la liste des différentes pizzas de toutes les commandes
-		List<Pizza> result = orders.stream().flatMap(o->o.getPizzas().stream()).distinct().toList();;
+		List<Pizza> result = orders.stream().flatMap(o->o.getPizzas().stream()).distinct().toList();
+		System.out.println(result);
 
 		assertThat(result.size(), is(4));
 	}
@@ -90,7 +92,8 @@ public class Stream_03_Test {
 		List<Order> orders = new Data().getOrders();
 
 		// TODO construire une Map <Client, Commandes effectuées par le client
-		Map<Customer, List<Order>> result = null;
+		Map<Customer, List<Order>> result = orders.stream().collect(Collectors.groupingBy(o->o.getCustomer()));
+		System.out.println(result);
 
 		assertThat(result.size(), is(2));
 		assertThat(result.get(new Customer(1)), hasSize(4));

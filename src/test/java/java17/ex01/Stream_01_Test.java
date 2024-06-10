@@ -66,10 +66,10 @@ public class Stream_01_Test {
 		List<Pizza> pizzas = new Data().getPizzas();
 
 		// TODO valider que toutes les pizzas ont un prix >= 1300
-		Boolean result1 = null;
+		Boolean result1 = pizzas.stream().allMatch((p->p.getPrice()>=1300));
 
 		// TODO valider que toutes les pizzas ont un prix >= 900
-		Boolean result2 = null;
+		Boolean result2 = pizzas.stream().allMatch((p->p.getPrice()>=900));;
 
 		assertThat(result1, is(false));
 		assertThat(result2, is(true));
@@ -92,7 +92,8 @@ public class Stream_01_Test {
 		
 
 		// TODO récupérer une commande faite par un client dont le prénom est "Sophie"
-		Optional<Order> result = orders.stream().filter(o -> "Sophie".equals(o.getCustomer().getFirstname())).findFirst();
+		//Optional<Order> result = orders.stream().filter(o -> "Sophie".equals(o.getCustomer().getFirstname())).findFirst();
+		Optional<Order> result = orders.stream().filter(o->o.getCustomer().getFirstname().equals("Sophie").findFirst());
 		
 		assertThat(result.isPresent(), is(false));
 	}

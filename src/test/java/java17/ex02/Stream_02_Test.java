@@ -74,7 +74,7 @@ public class Stream_02_Test {
 		 * TODO Calculer le chiffre d'affaires total de la pizzeria (somme des prix des
 		 * commandes)
 		 */
-		double result = orders.stream().mapToDouble(o->o.getPrice()).sum();
+		double result = orders.stream().mapToDouble(o->o.getPrice()).sum(); // Si on laisse le map() il faut passer par un reduce(p1, p2...)
 		System.out.println(result);
 
 		assertThat(result, is(10900.0));
